@@ -13,9 +13,10 @@ public class PlayerControler : MonoBehaviour
 	private float step;
 	private Ray2D rightSight;
 	private Ray2D leftSight;
+	private GameObject blurbReal;
 
+	public GameObject blurbPrefab;
 
-	public GameObject blurb;
 
 
 
@@ -23,6 +24,7 @@ public class PlayerControler : MonoBehaviour
 	{
 		step = 5.0f;
 		blurbActivate = false;
+		DrawSightRays ();
 	}
 	
 
@@ -36,7 +38,14 @@ public class PlayerControler : MonoBehaviour
 
 		if (blurbActivate)
 		{
-			transform.position = Vector3.MoveTowards (transform.position, mousePos, step * Time.deltaTime);
+			transform.rotation = Quaternion.LookRotation ((blurbReal.transform.position - playerPos));
+			transform.position = Vector3.MoveTowards (transform.position, blurbReal.transform.position, step * Time.deltaTime);
+			FindPlayer ();
+
+			if (playerPos == blurbReal.transform.position)
+			{
+				Destroy (blurbReal);
+			}
 		}
 	}
 
@@ -50,8 +59,6 @@ public class PlayerControler : MonoBehaviour
 		float mousePosX = Input.mousePosition.x / Screen.width * 13.5f;
 		float mousePosY = Input.mousePosition.y / Screen.height * 10.0f;
 		mousePos = new Vector3 (mousePosX, mousePosY, X_POS);
-
-		Debug.Log ("Mouse-X = " + mousePosX + " Mouse-Y = " + mousePosY);
 	}
 
 
@@ -75,16 +82,36 @@ public class PlayerControler : MonoBehaviour
 
 	void FindDistance ()
 	{
+		FindCursor ();
+		FindPlayer ();
+
 		if (Input.GetMouseButtonDown (0))
 		{
-			FindCursor ();
-			FindPlayer ();
+			if (blurbReal)
+			{
+				Destroy (blurbReal);
+			}
 
 			distance = Vector3.Distance (playerPos, mousePos);
-			Instantiate (blurb, mousePos, Quaternion.identity);
+			blurbReal = Instantiate (blurbPrefab, mousePos, Quaternion.identity) as GameObject;
 			blurbActivate = true;
 
 			Debug.Log ("Distance From Mouse To Player = " + distance);
 		}
+	}
+
+
+
+
+
+
+	void DrawSightRays ()
+	{
+		rightSight.origin = leftSight.origin = playerPos;
+
+		rightSight.direction = new Vector2 (1.0f, (Mathf.PI / 4.0f));
+		leftSight.direction = new Vector2 (1.0f, Mathf.PI / 4.0f);
+
+		Debug.Log ("Right Sight: Direction " + rightSight.direction + " Left Sight Direction: " + leftSight.direction);
 	}
 }
