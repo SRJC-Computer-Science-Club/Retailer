@@ -11,7 +11,9 @@ Now as for the ideas:
 - [Isaiah's Idea](https://srjccsc.slack.com/team/ijcurtis), outline [here](https://checkvist.com/checklists/598536)
 
 ### The technologies
-So far, nothing that I have to say.
+So far, nothing that I have to say other than:
+
+>Unity3d
 
 ### How to join and understand this project
 1. Download Unity [here](https://store.unity.com/?_ga=1.245168645.1672768010.1480395601) prefably the Personal version
