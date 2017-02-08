@@ -9,8 +9,10 @@ Now as for the ideas:
 - Retailer, outline [here](https://cfoutliner.appspot.com/?view=7DWB20DHQ)
 - Wrath of the Lily Pickers, outline [here](https://cfoutliner.appspot.com/?view=7PXBFQ4WM)
 - [Isaiah's Idea](https://srjccsc.slack.com/team/ijcurtis), outline [here](https://checkvist.com/checklists/598536)
+
 ### The technologies
 So far, nothing that I have to say.
+
 ### How to join and understand this project
 1. Download Unity [here](https://store.unity.com/?_ga=1.245168645.1672768010.1480395601) prefably the Personal version
 2. Check out these useful tooks: [Tiled](http://www.mapeditor.org/), [Unity Tutorials](https://unity3d.com/learn)
